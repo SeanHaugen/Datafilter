@@ -4,22 +4,29 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-import npcModel from "./Schema/NPC_Schema";
+const npcModel = require("./Schema/NPC_Schema");
 
 
 dotenv.config({ path: "./config.env"});
 
-const DATABASE_PASSWORD = 'v06zH7KmMP7ubXLF'
-const DATABASE=`mongodb+srv://seanhaugen560:${DATABASE_PASSWORD}@cluster0.0pufj0a.mongodb.net/VTT_Sample_data?retryWrites=true&w=majority`;
+// const DATABASE_PASSWORD = 'v06zH7KmMP7ubXLF'
+// const DATABASE=`mongodb+srv://seanhaugen560:${DATABASE_PASSWORD}@cluster0.0pufj0a.mongodb.net/VTT_Base?retryWrites=true&w=majority`;
 
-const DB = DATABASE
+// const DB = DATABASE
+
+const DATABASE_PASSWORD = 'v06zH7KmMP7ubXLF';
+const DATABASE = 'mongodb+srv://seanhaugen560:v06zH7KmMP7ubXLF@cluster0.7uip2sz.mongodb.net/';
+
+const DB = `${DATABASE}`;
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-}).then(() => {
-    console.log("connected to MongoDB");
-})
+  }).then(() => {
+    console.log("Connected to MongoDB");
+  }).catch(err => {
+    console.error("Error connecting to MongoDB:", err);
+  });
 
 const port = process.env.PORT || 4000;
 
