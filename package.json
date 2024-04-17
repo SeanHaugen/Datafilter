@@ -1,0 +1,20 @@
+{
+  "name": "vtt_mongdb_server",
+  "version": "1.0.0",
+  "description": "Server connection to mongoDB server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean H",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
+    "node.js": "^0.0.1-security",
+    "nodemon": "^3.1.0"
+  }
+}
