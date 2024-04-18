@@ -4,18 +4,15 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const npcModel = require("./Schema/NPC_Schema");
+// const npcModel = require("./Schema/NPC_Schema");
+// const locationModel = require("./Schema/Location_Schema");
+const locationController = require('./controllers/locationController');
+const npcController = require('./controllers/npcController');
 
 
 dotenv.config({ path: "./config.env"});
 
-// const DATABASE_PASSWORD = 'v06zH7KmMP7ubXLF'
-// const DATABASE=`mongodb+srv://seanhaugen560:${DATABASE_PASSWORD}@cluster0.0pufj0a.mongodb.net/VTT_Base?retryWrites=true&w=majority`;
-
-// const DB = DATABASE
-
-const DATABASE_PASSWORD = 'v06zH7KmMP7ubXLF';
-const DATABASE = 'mongodb+srv://seanhaugen560:v06zH7KmMP7ubXLF@cluster0.7uip2sz.mongodb.net/';
+const DATABASE = 'mongodb+srv://seanhaugen560:v06zH7KmMP7ubXLF@cluster0.7uip2sz.mongodb.net/VTT_Sample_data';
 
 const DB = `${DATABASE}`;
 
@@ -34,18 +31,13 @@ app.use(express.json());
 
 app.use(cors());
 
+//GET requests
+app.get("/location_info", locationController.getLocationInfo);
+app.get("/npc_info", npcController.getNPCInfo);
 
-app.get("/npc_info", async (req, res) => {
-    try {
-        const npcInfo = await npcModel.find();
-        console.log(npcInfo)
-        res.send(npcInfo);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Internal server error");
-    }
-});
 
+
+//launch application server
 app.listen(port, () => {
     console.log(`server running on port ${port}`);
 })

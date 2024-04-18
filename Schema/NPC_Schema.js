@@ -3,30 +3,25 @@ const mongoose = require('mongoose');
 const npcSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
   },
   ancestry: {
     type: String,
-    required: true
   },
   location: {
     type: String,
-    required: true
   },
   description: {
     type: String,
-    required: true
   },
   shopOwner: {
     type: Boolean,
-    required: true
   },
   items: {
     type: [String],
-    required: true
   }
 });
 
-const npcModel = mongoose.model('Character', npcSchema);
+const npcModel = mongoose.model('NPC_datas', npcSchema);
+
 
 module.exports = npcModel;
