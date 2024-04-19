@@ -3,14 +3,12 @@ const dotenv = require('dotenv');
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
-// const npcModel = require("./Schema/NPC_Schema");
-// const locationModel = require("./Schema/Location_Schema");
+//Controllers
 const locationController = require('./controllers/locationController');
-const npcController = require('./controllers/npcController');
+// const npcController = require('./controllers/npcController');
+// const npcFunctions = require('./controllers/npcController');
+const { getNPCInfo, generateNPCFunctions } = require('./controllers/npcController'); 
 
-
-dotenv.config({ path: "./config.env"});
 
 const DATABASE = 'mongodb+srv://seanhaugen560:v06zH7KmMP7ubXLF@cluster0.7uip2sz.mongodb.net/VTT_Sample_data';
 
@@ -31,9 +29,20 @@ app.use(express.json());
 
 app.use(cors());
 
-//GET requests
+//requests
+
+//Location
 app.get("/location_info", locationController.getLocationInfo);
-app.get("/npc_info", npcController.getNPCInfo);
+
+
+//NPC INFO
+app.get("/npc", getNPCInfo);
+generateNPCFunctions().then(npcFunctions => {
+  for (const funcName in npcFunctions) {
+    app.get(`/npc/${funcName}`, npcFunctions[funcName]);
+  }
+});
+
 
 
 
