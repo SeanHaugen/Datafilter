@@ -51,12 +51,13 @@ async function generateNPCFunctions() {
   for (let i = 0; i < npcFields.length; i++) {
     const fieldName = npcFields[i];
     npcFunctions[`getNPCBy${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`] = async function (req, res) {
-        const searchQuery = req.query.npc;
+        const searchQuery = req.query.field;
         try {
             let query = {};
             // For boolean fields, handle differently
-            if (fieldName === 'Shop_Owner') {
-                query[fieldName] = (searchQuery.toLowerCase() === 'true');
+            // console.log(isBooleanField('Shop_Owner'));
+            if (isBooleanField(fieldName)) {
+              query[fieldName] = (searchQuery.toLowerCase() === 'true');
             } else {
                 query[fieldName] = { $regex: searchQuery, $options: 'i' };
             }
@@ -73,31 +74,16 @@ async function generateNPCFunctions() {
   return npcFunctions;
 }
 
+function isBooleanField(fieldName) {
+  return typeof fieldName === 'boolean';
+}
+
+
+
 module.exports = {
   getNPCInfo,
   generateNPCFunctions
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
