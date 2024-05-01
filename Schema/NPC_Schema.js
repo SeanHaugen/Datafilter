@@ -13,7 +13,7 @@ const npcSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  shopOwner: {
+  Shop_Owner: {
     type: Boolean,
   },
   items: {
