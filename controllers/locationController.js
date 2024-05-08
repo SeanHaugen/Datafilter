@@ -40,7 +40,7 @@ async function getLocationFields() {
   
     for (let i = 0; i < locationFields.length; i++) {
       const fieldName = locationFields[i];
-      locationFunctions[`getLocationBy${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`] = async function (req, res) {
+      locationFunctions[`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`] = async function (req, res) {
           const searchQuery = req.query.field;
           console.log("Search query:", searchQuery);
           console.log("Field name:", fieldName);

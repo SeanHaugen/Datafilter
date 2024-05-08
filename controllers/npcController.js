@@ -40,7 +40,7 @@ async function generateNPCFunctions() {
 
   for (let i = 0; i < npcFields.length; i++) {
     const fieldName = npcFields[i];
-    npcFunctions[`getNPCBy${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`] = async function (req, res) {
+    npcFunctions[`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`] = async function (req, res) {
         const searchQuery = req.query.field;
         console.log("Search query:", searchQuery);
         console.log("Field name:", fieldName);

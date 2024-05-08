@@ -33,7 +33,7 @@ app.use(cors());
 app.get("/npc", getNPCInfo);
 generateNPCFunctions().then(npcFunctions => {
   for (const funcName in npcFunctions) {
-    app.get(`/npc/${funcName}`, npcFunctions[funcName]);
+    app.get(`/${funcName}`, npcFunctions[funcName]);
   }
 });
 
@@ -41,7 +41,7 @@ generateNPCFunctions().then(npcFunctions => {
 app.get("/location_info", getLocationInfo);
 generateLocationFunctions().then(locationFunctions => {
   for (const funcName in locationFunctions) {
-    app.get(`/location/${funcName}`, locationFunctions[funcName]);
+    app.get(`/${funcName}`, locationFunctions[funcName]);
   }
 });
 
