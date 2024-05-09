@@ -18,8 +18,12 @@ const npcSchema = new mongoose.Schema({
   },
   items: {
     type: [String],
-  }
-});
+  },
+  otherFields: mongoose.Schema.Types.Mixed,
+
+},{strict: false}
+
+);
 
 const npcModel = mongoose.model('NPC_datas', npcSchema);
 
